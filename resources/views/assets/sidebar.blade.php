@@ -1,4 +1,10 @@
-<div class="navbar-bg"></div>
+
+
+<body>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+
+    <div class="navbar-bg"></div>
       <nav class="navbar navbar-expand-lg main-navbar">
         <form class="form-inline mr-auto">
           <ul class="navbar-nav mr-3">
@@ -229,9 +235,9 @@
             <li class=menu-header><a class="nav-link" href="/">Dashboard</a></li>
             <li class="menu-header">Starter</li>
             <li class="dropdown">
-              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
+              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Master</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="layout-default.html">Default Layout</a></li>
+                <li><a class="nav-link" href="/products">Products</a></li>
                 <li><a class="nav-link" href="layout-transparent.html">Transparent Sidebar</a></li>
                 <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
               </ul>
