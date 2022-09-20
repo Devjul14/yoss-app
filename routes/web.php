@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -15,7 +16,9 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [LoginController::class, 'index']);
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/home', function () {
     return view('welcome');
 });
 

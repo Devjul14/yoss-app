@@ -24,7 +24,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        // dd('hai');
+        return view('product.tambah');
     }
 
     /**

@@ -4,9 +4,9 @@
       @include('assets.sidebar')
 
       <!-- Main Content -->
-      @yield('content')
       <div class="main-content">
         <section class="section">
+          @yield('content')
           <div class="section-header">
             <h1>Dashboard</h1>
           </div>
