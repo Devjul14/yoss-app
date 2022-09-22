@@ -3,10 +3,10 @@
         
       @include('assets.sidebar')
 
+      @yield('content')
       <!-- Main Content -->
       <div class="main-content">
         <section class="section">
-          @yield('content')
           <div class="section-header">
             <h1>Dashboard</h1>
           </div>
