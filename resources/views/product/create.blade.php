@@ -11,10 +11,40 @@
       <div class="col-12 col-md-12 col-lg-12">
         <div class="card">
           <div class="card-body">
-            <div class="form-group col-md-6 col-lg-6">
-              <label>Default Input Text</label>
-              <input type="text" class="form-control">
-            </div>
+            <form action="{{ url('products') }}" method="post" enctype="multipart/form-data">
+              @csrf
+              <div class="form-group col-md-6 col-lg-6">
+                <label>Name</label>
+                <input type="text" class="form-control" name="name">
+                @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="form-group col-md-6 col-lg-6">
+                <label>Type</label>
+                <input type="text" class="form-control" name="type">
+                @error('type')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="form-group col-md-6 col-lg-6">
+                <label>Price</label>
+                <input type="text" class="form-control" name="price">
+                @error('price')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="form-group col-md-6 col-lg-6">
+                <label>Stock</label>
+                <input type="text" class="form-control" name="stock">
+                @error('stock')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="form-group col-md-6 col-lg-6">                
+                <button type="submit" class="btn btn-primary text-right">Save</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

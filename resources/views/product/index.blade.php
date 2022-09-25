@@ -10,11 +10,20 @@
         <h1>Product</h1>
       </div>
 
+      @if (session()->has('success'))
+      <div class="alert alert-success alert-has-icon">
+        <div class="alert-icon"><i class="fa fa-check"></i></i></div>
+        <div class="alert-body">
+          <div class="alert-title">Success</div>
+          {{ session('success') }}
+        </div>
+      </div>
+  @endif
       <div class="section-body">
         <div class="col-12 col-md-12 col-lg-12">
           <div class="card">
             <div class="card-header">
-              <a href="{{ url('products/create') }}" class="btn btn-icon btn-primary"><i class="far fa-edit"></i>Add</a>
+              <a href="{{ url('products/create') }}" class="btn btn-icon btn-primary"><i class="fa fa-plus"></i> Add</a>
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -22,45 +31,25 @@
                   <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Created At</th>
-                    <th>Status</th>
+                    <th>Type</th>
+                    <th>Price</th>
+                    <th>Stock</th>
                     <th>Action</th>
                   </tr>
+                  @foreach ($products as $item)
                   <tr>
-                    <td>1</td>
-                    <td>Irwansyah Saputra</td>
-                    <td>2017-01-09</td>
-                    <td><div class="badge badge-success">Active</div></td>
-                    <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->type }}</td>
+                    <td>{{ $item->price }}</td>
+                    <td>{{ $item->stock }}</td>
+                    <td>
+                      <a href="{{ url('products/'. $item->id .'/edit') }}" class="btn btn-icon btn-warning"><i class="far fa-edit"></i></a>
+                      <a href="{{ url('products/'. $item->id ) }}" class="btn btn-icon btn-danger"><i class="fa fa-trash"></i></a>
+                    </td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Hasan Basri</td>
-                    <td>2017-01-09</td>
-                    <td><div class="badge badge-success">Active</div></td>
-                    <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Kusnadi</td>
-                    <td>2017-01-11</td>
-                    <td><div class="badge badge-danger">Not Active</div></td>
-                    <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>Rizal Fakhri</td>
-                    <td>2017-01-11</td>
-                    <td><div class="badge badge-success">Active</div></td>
-                    <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td>Isnap Kiswandi</td>
-                    <td>2017-01-17</td>
-                    <td><div class="badge badge-success">Active</div></td>
-                    <td><a href="#" class="btn btn-secondary">Detail</a></td>
-                  </tr>
+                  @endforeach
+                  
                 </table>
               </div>
             </div>
