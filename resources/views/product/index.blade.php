@@ -45,7 +45,7 @@
                     <td>{{ $item->stock }}</td>
                     <td>
                       <a href="{{ url('products/'. $item->id .'/edit') }}" class="btn btn-icon btn-warning"><i class="far fa-edit"></i></a>
-                      <a href="{{ url('products/'. $item->id ) }}" class="btn btn-icon btn-danger"><i class="fa fa-trash"></i></a>
+                      <a href="{{ url('products/'. $item->id ) }}" class="btn btn-danger" data-method="delete" data-confirm="Realy?|Do you want to continue?" data-confirm-yes="/products/{{ $item->id }}">del</a>
                     </td>
                   </tr>
                   @endforeach
@@ -69,6 +69,27 @@
                   </li>
                 </ul>
               </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      /modal
+      <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer bg-whitesmoke br">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>

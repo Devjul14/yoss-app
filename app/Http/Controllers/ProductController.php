@@ -68,9 +68,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        // dd($product);
+        return view('product.edit', [
+            "product" => $product
+        ]);
     }
 
     /**
@@ -82,7 +85,17 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required',
+            'type' => 'required',
+            'price' => 'required',
+            'stock' => 'required'
+        ]);
+        // dd($validateData, $id);
+        Product::where('id', $id)
+            ->update($validateData);
+
+        return redirect('products')->with('success', 'Product has been updated!');
     }
 
     /**
@@ -93,6 +106,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd('hai');
+        Product::destroy($id);
+
+        return redirect('products')->with('success', 'Product has been deleted!');
     }
 }
