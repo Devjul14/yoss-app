@@ -106,7 +106,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        dd('hai');
+        // dd('hai');
         Product::destroy($id);
 
         return redirect('products')->with('success', 'Product has been deleted!');
