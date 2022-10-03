@@ -14,29 +14,29 @@
             <form action="{{ url('products') }}" method="post" enctype="multipart/form-data">
               @csrf
               <div class="form-group col-md-6 col-lg-6">
-                <label>Name</label>
-                <input type="text" class="form-control" name="name">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name">
                 @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="form-group col-md-6 col-lg-6">
                 <label>Type</label>
-                <input type="text" class="form-control" name="type">
+                <input type="text" class="form-control @error('type') is-invalid @enderror" name="type">
                 @error('type')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="form-group col-md-6 col-lg-6">
                 <label>Price</label>
-                <input type="text" class="form-control" name="price">
+                <input type="text" class="form-control @error('price') is-invalid @enderror" name="price">
                 @error('price')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
               <div class="form-group col-md-6 col-lg-6">
                 <label>Stock</label>
-                <input type="text" class="form-control" name="stock">
+                <input type="text" class="form-control @error('stock') is-invalid @enderror" name="stock">
                 @error('stock')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
