@@ -7,14 +7,14 @@
 <div class="main-content">
     <section class="section">
       <div class="section-header">
-        <h1>Product</h1>
+        <h1>Store</h1>
       </div>
 
       @if (session()->has('success'))
       <div class="alert alert-success alert-has-icon">
         <div class="alert-icon"><i class="fa fa-check"></i></i></div>
         <div class="alert-body">
-          <div class="alert-title">Success</div>
+          <div class="alert-title"><strong>Success</strong></div>
           {{ session('success') }}
         </div>
       </div>
@@ -23,7 +23,7 @@
         <div class="col-12 col-md-12 col-lg-12">
           <div class="card">
             <div class="card-header">
-              <a href="{{ url('products/create') }}" class="btn btn-icon btn-primary"><i class="fa fa-plus"></i> Add</a>
+              <a href="{{ url('store/create') }}" class="btn btn-icon btn-primary"><i class="fa fa-plus"></i> Add</a>
             </div>
             <div class="card-body p-0">
               <div class="table-responsive">
@@ -31,21 +31,19 @@
                   <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Type</th>
-                    <th>Price</th>
-                    <th>Stock</th>
+                    <th>Phone</th>
+                    <th>Addrees</th>
                     <th>Action</th>
                   </tr>
-                  @foreach ($products as $item)
+                  @foreach ($store as $item)
                   <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->name }}</td>
-                    <td>{{ $item->type }}</td>
-                    <td>{{ $item->price }}</td>
-                    <td>{{ $item->stock }}</td>
+                    <td>{{ $item->phone }}</td>
+                    <td>{{ $item->address }}</td>
                     <td>
-                      <a href="{{ url('products/'. $item->id .'/edit') }}" class="btn btn-icon btn-warning"><i class="far fa-edit"></i></a>
-                      <form action="products/{{ $item->id }}" method="post" class="d-inline">
+                      <a href="{{ url('store/'. $item->id .'/edit') }}" class="btn btn-icon btn-warning"><i class="far fa-edit"></i></a>
+                      <form action="store/{{ $item->id }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf
                         <button class="btn btn-icon btn-danger" onclick="return confirm('Are You Sure?')"><i class="fa fa-trash"></i></button>
@@ -60,7 +58,7 @@
               <nav class="d-inline-block">
                 <ul class="pagination mb-0">
                   <li class="page-item">
-                      {{ $products->links() }}
+                      {{ $store->links() }}
                   </li>
                 </ul>
               </nav>

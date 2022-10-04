@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Store;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class StoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class ProductController extends Controller
     public function index()
     {
         // dd('hai');
-        $products = Product::paginate(20);
-        return view('product.index', compact('products'));
+        $store = Store::paginate(20);
+        return view('store.index', compact('store'));
     }
 
     /**
@@ -26,8 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        // dd('hai');
-        return view('product.create');
+        return view('store.create');
     }
 
     /**
@@ -40,15 +39,14 @@ class ProductController extends Controller
     {
         $validateData = $request->validate([
             'name' => 'required',
-            'type' => 'required',
-            'price' => 'required',
-            'stock' => 'required'
+            'phone' => 'required',
+            'address' => 'required'
         ]);
 
 
-        Product::create($validateData);
+        Store::create($validateData);
 
-        return redirect('products')->with('success', 'New Product has been added !');
+        return redirect('store')->with('success', 'New Store has been added !');
     }
 
     /**
@@ -68,12 +66,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Store $store)
     {
-        // dd($product);
-        return view('product.edit', [
-            "product" => $product
-        ]);
+        return view('store.edit', compact('store'));
     }
 
     /**
@@ -87,15 +82,15 @@ class ProductController extends Controller
     {
         $validateData = $request->validate([
             'name' => 'required',
-            'type' => 'required',
-            'price' => 'required',
-            'stock' => 'required'
+            'phone' => 'required',
+            'address' => 'required'
         ]);
-        // dd($validateData, $id);
-        Product::where('id', $id)
+
+
+        Store::where('id', $id)
             ->update($validateData);
 
-        return redirect('products')->with('success', 'Product has been updated!');
+        return redirect('store')->with('success', 'New Store has been Updated !');
     }
 
     /**
@@ -106,9 +101,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        // dd('hai');
-        Product::destroy($id);
+        Store::destroy($id);
 
-        return redirect('products')->with('success', 'Product has been deleted!');
+        return redirect('store')->with('success', 'Store has been deleted!');
     }
 }

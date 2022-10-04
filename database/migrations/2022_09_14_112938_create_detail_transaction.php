@@ -13,7 +13,7 @@ class CreateDetailTransaction extends Migration
      */
     public function up()
     {
-        Schema::create('detail_transaction', function (Blueprint $table) {
+        Schema::create('detail_transactions', function (Blueprint $table) {
             $table->id();
             $table->integer('transaction_id');
             $table->integer('product_id');

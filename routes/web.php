@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +25,6 @@ Route::get('/home', function () {
 });
 
 Route::resource('/products', ProductController::class);
+Route::resource('/store', StoreController::class);
+Route::resource('/customer', CustomerController::class);
+Route::get('customer/{id}', 'App\Http\Controllers\CustomerController@destroy');

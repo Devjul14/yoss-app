@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // dd('hai');
-        $products = Product::paginate(20);
-        return view('product.index', compact('products'));
+        $customer = Customer::paginate(20);
+        return view('customer.index', compact('customer'));
     }
 
     /**
@@ -26,8 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        // dd('hai');
-        return view('product.create');
+        return view('customer.create');
     }
 
     /**
@@ -40,15 +38,14 @@ class ProductController extends Controller
     {
         $validateData = $request->validate([
             'name' => 'required',
-            'type' => 'required',
-            'price' => 'required',
-            'stock' => 'required'
+            'phone' => 'required',
+            'address' => 'required'
         ]);
 
 
-        Product::create($validateData);
+        Customer::create($validateData);
 
-        return redirect('products')->with('success', 'New Product has been added !');
+        return redirect('customer')->with('success', 'New Customer has been added !');
     }
 
     /**
@@ -68,12 +65,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Customer $customer)
     {
-        // dd($product);
-        return view('product.edit', [
-            "product" => $product
-        ]);
+        return view('customer.edit', compact('customer'));
     }
 
     /**
@@ -87,15 +81,15 @@ class ProductController extends Controller
     {
         $validateData = $request->validate([
             'name' => 'required',
-            'type' => 'required',
-            'price' => 'required',
-            'stock' => 'required'
+            'phone' => 'required',
+            'address' => 'required'
         ]);
-        // dd($validateData, $id);
-        Product::where('id', $id)
+
+
+        Customer::where('id', $id)
             ->update($validateData);
 
-        return redirect('products')->with('success', 'Product has been updated!');
+        return redirect('customer')->with('success', 'New Customer has been Updated !');
     }
 
     /**
@@ -106,9 +100,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        // dd('hai');
-        Product::destroy($id);
+        // dd($id);
+        Customer::destroy($id);
 
-        return redirect('products')->with('success', 'Product has been deleted!');
+        return redirect('customer')->with('success', 'Customer has been deleted!');
     }
 }

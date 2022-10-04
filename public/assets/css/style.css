@@ -960,8 +960,10 @@ table tr:hover .table-links {
   padding: 25px; }
 
 .modal-body {
-  padding-top: 15px; }
+  padding-top: 15px;
+ }
 
+ 
 .modal-footer {
   padding-top: 15px;
   padding-bottom: 15px; }
