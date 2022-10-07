@@ -58,7 +58,7 @@
                                 <p>Are You Sure?</p>
                               </div>
                               <div class="modal-footer">
-                                <form action="{{route('customer.destroy', $item->id)}}" method="POST" class="pt-3">
+                                <form action="{{url('customer', $item->id)}}" method="POST" class="pt-3">
                                   @csrf
                                   @method('DELETE')
                                   <button type="submit" class="btn btn-primary"> Yes</button>

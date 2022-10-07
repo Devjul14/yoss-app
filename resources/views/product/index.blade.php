@@ -45,10 +45,31 @@
                     <td>{{ $item->stock }}</td>
                     <td>
                       <a href="{{ url('products/'. $item->id .'/edit') }}" class="btn btn-icon btn-warning"><i class="far fa-edit"></i></a>
-                      <form action="products/{{ $item->id }}" method="post" class="d-inline">
-                        @method('delete')
-                        @csrf
-                        <button class="btn btn-icon btn-danger" onclick="return confirm('Are You Sure?')"><i class="fa fa-trash"></i></button>
+                      <button class="btn btn-icon btn-danger"data-toggle="modal" data-target="#exampleModal{{ $item->id }}"><i class="fa fa-trash"></i></button>
+                        
+                        <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal{{ $item->id }}" data-backdrop="false">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Confirmation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <p>Are You Sure?</p>
+                              </div>
+                              <div class="modal-footer">
+                                <form action="{{url('products', $item->id)}}" method="POST" class="pt-3">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button type="submit" class="btn btn-primary"> Yes</button>
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                              </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                     </td>
                   </tr>
                   @endforeach
