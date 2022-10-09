@@ -19,6 +19,7 @@ class CreateTransaction extends Migration
             $table->integer('customer_id');
             $table->integer('store_id');
             $table->integer('user_id');
+            $table->integer('status');
             $table->timestamps();
         });
     }
