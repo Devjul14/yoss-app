@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,13 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
+// master
 Route::resource('/products', ProductController::class);
 Route::resource('/store', StoreController::class);
 Route::resource('/customer', CustomerController::class);
 Route::get('customer/{id}', 'App\Http\Controllers\CustomerController@destroy');
+
+// transaction
+
+Route::get('/transaction', [TransactionController::class, 'index']);
+Route::get('/create-invoice', [TransactionController::class, 'create']);
