@@ -22,37 +22,38 @@
                             </div>
                             <hr>
                             <div class="row">
-                                <!-- <div class="form-group col-md-8"> -->
-                                <div class="col-md-3">
-                                    <strong>Product:</strong><br>
-                                    <input type="text" class="form-control" name="product">
-                                </div>
-                                <div class="col-md-1">
-                                    <strong>Qty:</strong><br>
-                                    <input type="text" class="form-control" name="qty">
-                                </div>
-                                <!-- </div> -->
-                                <div class="col-md-4 text-md-left"></div>
-                                <div class="col-md-4 text-md-left">
-                                    <strong>Customer:</strong><br>
-                                    <input type="text" class="form-control" name="customer">
-
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <address>
-                                        <strong>Payment Method:</strong><br>
-                                        Visa ending **** 4242<br>
-                                        ujang@maman.com
-                                    </address>
-                                </div>
+                                <div class="col-md-4"> </div>
                                 <div class="col-md-4 text-md-left"></div>
                                 <div class="col-md-4 text-md-left">
                                     <address>
                                         <strong>Order Date:</strong><br>
                                         {{ $now }} <br><br>
                                     </address>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <strong>Product:</strong><br>
+                                    <select class="form-control select2" name="product">
+                                        <option> -Product- </option>
+                                        @foreach($products as $product)
+                                        <option>{{$product->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-1">
+                                    <strong>Qty:</strong><br>
+                                    <input type="text" class="form-control" name="qty">
+                                </div>
+                                <div class="col-md-4 text-md-left"></div>
+                                <div class="col-md-4 text-md-left">
+                                    <strong>Customer:</strong><br>
+                                    <select class="form-control select2" name="customer">
+                                        <option> -Customer- </option>
+                                        @foreach($customers as $customer)
+                                        <option>{{$customer->name}} :: {{ $customer->address }} </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -71,34 +72,13 @@
                                         <th class="text-center">Quantity</th>
                                         <th class="text-right">Totals</th>
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mouse Wireless</td>
-                                        <td class="text-center">$10.99</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-right">$10.99</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Keyboard Wireless</td>
-                                        <td class="text-center">$20.00</td>
-                                        <td class="text-center">3</td>
-                                        <td class="text-right">$60.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Headphone Blitz TDR-3000</td>
-                                        <td class="text-center">$600.00</td>
-                                        <td class="text-center">1</td>
-                                        <td class="text-right">$600.00</td>
-                                    </tr>
                                 </table>
                             </div>
                             <div class="row mt-4">
                                 <div class="col-lg-12 text-right">
                                     <div class="invoice-detail-item">
                                         <div class="invoice-detail-name">Total</div>
-                                        <div class="invoice-detail-value invoice-detail-value-lg">$685.99</div>
+                                        <div class="invoice-detail-value invoice-detail-value-lg">0</div>
                                     </div>
                                 </div>
                             </div>
