@@ -37,7 +37,6 @@ class TransactionController extends Controller
         ]);
 
         $insertData = Transaction::create($validateData);
-        echo $insertData->id;
         $id =  $insertData->id;
         $total_data = $request->get('rows1');
 		for($i=1; $i <= count($total_data); $i++) {
@@ -49,6 +48,5 @@ class TransactionController extends Controller
             $insertDataDetails->save();
         }
         return redirect('transaction')->with('success', 'New Invoice has been added !');
-        dd('sukses');
     }
 }
