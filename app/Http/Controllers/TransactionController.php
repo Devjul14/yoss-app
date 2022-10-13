@@ -52,10 +52,10 @@ class TransactionController extends Controller
     
                 $updateStock = Product::Where('id', $_POST['product_'.$i])->decrement('stock', $_POST['qty_'.$i]);
             }
+            DB::commit();
     
             return redirect('transaction')->with('success', 'New Invoice has been added !');
             
-            DB::commit();
         }catch(\Exception $e){
             DB::rollback();
         }
