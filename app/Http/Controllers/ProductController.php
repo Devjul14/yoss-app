@@ -111,4 +111,30 @@ class ProductController extends Controller
 
         return redirect('products')->with('success', 'Product has been deleted!');
     }
+
+    public function getProducts(Request $request){
+
+        $search = $request->search;
+  
+        if($search == ''){
+           $products = Product::orderby('name','asc')->select('id','name')->limit(5)->get();
+        }else{
+           $products = Product::orderby('name','asc')->select('id','name')->where('name', 'like', '%' .$search . '%')->limit(5)->get();
+        }
+  
+        $response = array();
+        foreach($products as $product){
+           $response[] = array("value"=>$product->id,"label"=>$product->name);
+        }
+  
+        return response()->json($response);
+     }
+
+     public function getProductDetails(Request $request) {
+         $id = $request->id;
+         $data = Product::Where('id', $id)->first();
+         $response = array("id"=>$data->id, "name"=>$data->name, "price"=>$data->price, "stock"=>$data->stock);
+
+         return response()->json($response);
+     }
 }

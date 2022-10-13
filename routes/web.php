@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\TransactionController;
+use App\Models\Product;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,13 @@ Route::resource('/customer', CustomerController::class);
 Route::get('customer/{id}', 'App\Http\Controllers\CustomerController@destroy');
 
 // transaction
-
 Route::get('/transaction', [TransactionController::class, 'index']);
 Route::get('/create-invoice', [TransactionController::class, 'create']);
+Route::post('/create-invoice', [TransactionController::class, 'store']);
+
+//ajax
+Route::get('/get-product-details', [ProductController::class, 'getProductDetails'])->name('product.getProductDetails');
+
+//autocomplete
+Route::get('/get-products', [ProductController::class, 'getProducts'])->name('product.getProducts');
+Route::get('/get-customers', [CustomerController::class, 'getCustomers'])->name('customer.getCustomers');
