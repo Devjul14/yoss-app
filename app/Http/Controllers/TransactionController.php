@@ -8,6 +8,7 @@ use App\Models\Transaction;
 use App\Models\DetailTransaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use DB;
 
 class TransactionController extends Controller
 {
@@ -28,25 +29,35 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'date' => 'required',
-            'customer_id' => 'required',
-            'store_id' => 'required',
-            'user_id' => 'required',
-            'status' => 'required',
-        ]);
-
-        $insertData = Transaction::create($validateData);
-        $id =  $insertData->id;
-        $total_data = $request->get('rows1');
-		for($i=1; $i <= count($total_data); $i++) {
-			//insert data detail
-			$insertDataDetails = new DetailTransaction;
-            $insertDataDetails->transaction_id = $id;
-            $insertDataDetails->product_id = $_POST['product_'.$i];
-            $insertDataDetails->qty = $_POST['qty_'.$i];
-            $insertDataDetails->save();
+        try{        
+            $validateData = $request->validate([
+                'date' => 'required',
+                'customer_id' => 'required',
+                'store_id' => 'required',
+                'user_id' => 'required',
+                'status' => 'required',
+            ]);
+    
+            DB::beginTransaction();
+            $insertData = Transaction::create($validateData);
+            $id =  $insertData->id;
+            $total_data = $request->get('rows1');
+            for($i=1; $i <= count($total_data); $i++) {
+                //insert data detail
+                $insertDataDetails = new DetailTransaction;
+                $insertDataDetails->transaction_id = $id;
+                $insertDataDetails->product_id = $_POST['product_'.$i];
+                $insertDataDetails->qty = $_POST['qty_'.$i];
+                $insertDataDetails->save();
+    
+                $updateStock = Product::Where('id', $_POST['product_'.$i])->decrement('stock', $_POST['qty_'.$i]);
+            }
+    
+            return redirect('transaction')->with('success', 'New Invoice has been added !');
+            
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollback();
         }
-        return redirect('transaction')->with('success', 'New Invoice has been added !');
     }
 }

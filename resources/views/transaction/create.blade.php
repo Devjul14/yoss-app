@@ -226,9 +226,17 @@
 				+ '<td>'+$('#product_name').val()+'<input id="item_' + i + '" name="item_' + i + '" type="hidden" style="width:175px" class="form-control" value="'+$('#product_name').val()+'"></td>'
 				+ '<td style="text-align: right;">'+price+'<input id="price_' + i + '" name="price_' + i + '" type="hidden" style="width:175px" class="form-control" value="'+price+'"></td>'
 				+ '<td style="text-align: right;">'+qty+'<input id="qty_' + i + '" name="qty_' + i + '" type="hidden" style="width:50px" class="form-control" value="'+qty+'"></td>'
-				+ '<td style="text-align: right;">'+total+'<input id="total_' + i + '" name="total_' + i + '" type="hidden" style="width:175px" class="form-control" value="'+total+'">'
+				+ '<td style="text-align: right;">'+total+'<input id="total_' + i + '" name="total_' + i + '" type="hidden" style="width:175px" class="form-control total" value="'+total+'">'
 				+ '<input id="rows_' + i + '" name="rows1[]" value="'+ i +'" type="hidden"></td></tr>'
 			); 
+            
+            let sum = 0;
+            let items = document.getElementsByClassName("total");
+            for (let i = 0; i < items.length; i++) {
+                sum += parseInt(items[i].value);
+            }
+
+            $('div.invoice-detail-value').text(sum);
             $("#product_name").val('');
             $("#product_id").val('');
             $("#qty").val('');
