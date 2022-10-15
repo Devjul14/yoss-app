@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
-use App\Models\Product;
-use App\Models\Transaction;
-use App\Models\DetailTransaction;
 use Carbon\Carbon;
+use App\Models\Product;
+use App\Models\Customer;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
-use DB;
+use App\Models\DetailTransaction;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {

@@ -124,7 +124,10 @@ class ProductController extends Controller
   
         $response = array();
         foreach($products as $product){
-           $response[] = array("value"=>$product->id,"label"=>$product->name);
+            $response[] = array(
+                "value" => $product->id,
+                "label" => $product->name
+            );
         }
   
         return response()->json($response);
@@ -133,7 +136,12 @@ class ProductController extends Controller
      public function getProductDetails(Request $request) {
          $id = $request->id;
          $data = Product::Where('id', $id)->first();
-         $response = array("id"=>$data->id, "name"=>$data->name, "price"=>$data->price, "stock"=>$data->stock);
+        $response = array(
+            "id" => $data->id,
+            "name" => $data->name,
+            "price" => $data->price,
+            "stock" => $data->stock
+        );
 
          return response()->json($response);
      }

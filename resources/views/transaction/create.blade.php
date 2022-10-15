@@ -51,10 +51,10 @@
                                         <strong>Qty:</strong><br>
                                         <input type="text" class="form-control" name="qty" id="qty">
                                     </div>
-                                    <div class="col=md-1">
-                                        <button type="button" name="addBtn" id="addBtn" class="btn btn-success btn-sm"><i class='fa fa-file-o'></i>&nbsp;New</button>
+                                    <div class="col-md-3">
+                                        <br>
+                                        <button type="button" name="addBtn" id="addBtn" class="btn btn-success"><i class='fa fa-file-o'></i>&nbsp;New</button>
                                     </div>
-                                    <div class="col-md-2 text-md-left"></div>
                                     <div class="col-md-4 text-md-left">
                                         <strong>Customer:</strong><br>
                                         <input type="text" class="form-control" name="customer_name" id="customer_name">
@@ -63,7 +63,7 @@
                                         <input type="hidden" class="form-control" name="user_id" id="user_id" value="1">
                                         <input type="hidden" class="form-control" name="date" id="date" value="{{ $transDate }}">
                                         <input type="hidden" class="form-control" name="status" id="status" value="0">
-                                        
+
                                         <!--<select class="form-control select2" name="customer">
                                             <option> -Customer- </option>
                                             @foreach($customers as $customer)
@@ -106,7 +106,7 @@
                     <div class="text-md-right">
                         <div class="float-lg-left mb-lg-0 mb-3">
                             <button type="submit" class="btn btn-primary btn-icon icon-left"><i class="fas fa-credit-card"></i> Process Payment</button>
-                            <button class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Cancel</button>
+                            <a href="{{ url('transaction') }}" class="btn btn-danger btn-icon icon-left"><i class="fas fa-times"></i> Cancel</a>
                         </div>
                         <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>
                     </div>
@@ -121,75 +121,74 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
-
     // CSRF Token
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    $(document).ready(function(){
-        $( "#product_name" ).autocomplete({
-            source: function( request, response ) {
+    $(document).ready(function() {
+        $("#product_name").autocomplete({
+            source: function(request, response) {
                 // Fetch data
                 $.ajax({
-                    url:"{{route('product.getProducts')}}",
+                    url: "{{route('product.getProducts')}}",
                     type: 'get',
                     dataType: "json",
                     data: {
                         _token: CSRF_TOKEN,
                         search: request.term
                     },
-                    success: function( data ) {
-                        response( data );
+                    success: function(data) {
+                        response(data);
                     }
                 });
             },
-            select: function (event, ui) {
+            select: function(event, ui) {
                 // Set selection
                 $('#product_name').val(ui.item.label); // display the selected text
                 $('#product_id').val(ui.item.value); // save selected id to input
                 return false;
             }
-        }); 
+        });
 
-        $( "#customer_name" ).autocomplete({
-            source: function( request, response ) {
+        $("#customer_name").autocomplete({
+            source: function(request, response) {
                 // Fetch data
                 $.ajax({
-                    url:"{{route('customer.getCustomers')}}",
+                    url: "{{route('customer.getCustomers')}}",
                     type: 'get',
                     dataType: "json",
                     data: {
                         _token: CSRF_TOKEN,
                         search: request.term
                     },
-                    success: function( data ) {
-                        response( data );
+                    success: function(data) {
+                        response(data);
                     }
                 });
             },
-            select: function (event, ui) {
+            select: function(event, ui) {
                 // Set selection
                 $('#customer_name').val(ui.item.label); // display the selected text
                 $('#customer_id').val(ui.item.value); // save selected id to input
                 return false;
             }
-        }); 
+        });
 
         var i = 0;
-		$("#addBtn").click(function(){
+        $("#addBtn").click(function() {
             if ($("#product_name").val() == '') {
                 alert('Product harus diisi !!!');
                 $("#product_name").focus();
                 return false;
-            } 
+            }
             if ($("#qty").val() == '') {
                 alert('Qty harus diisi !!!');
                 $("#qty").focus();
                 return false;
-            } 
+            }
             if ($("#customer_name").val() == '') {
                 alert('Customer harus diisi !!!');
                 $("#customer_name").focus();
                 return false;
-            } 
+            }
 
             const productId = $("#product_id").val();
             let price = 0;
@@ -210,26 +209,26 @@
                     price = response.price;
                     stock = response.stock;
                     $("#price").val(price);
-                    $("#tock").val(stock);
+                    $("#stock").val(stock);
                 }
             });
             let total = qty * price;
-            
+
             if (qty > stock) {
                 alert('Qty ' + qty + ' melebihi stock ' + stock);
                 return false;
             }
-			i ++;			
-			$("#container1").append(
-				(isEven(i) ? '<tr class="alt">' : '<tr class="records">')
-                + '<td>'+$("#product_id").val()+'<input id="product_' + i + '" name="product_' + i + '" type="hidden" style="width:175px" class="form-control" value="'+$('#product_id').val()+'"></td>'
-				+ '<td>'+$('#product_name').val()+'<input id="item_' + i + '" name="item_' + i + '" type="hidden" style="width:175px" class="form-control" value="'+$('#product_name').val()+'"></td>'
-				+ '<td style="text-align: right;">'+price+'<input id="price_' + i + '" name="price_' + i + '" type="hidden" style="width:175px" class="form-control" value="'+price+'"></td>'
-				+ '<td style="text-align: right;">'+qty+'<input id="qty_' + i + '" name="qty_' + i + '" type="hidden" style="width:50px" class="form-control" value="'+qty+'"></td>'
-				+ '<td style="text-align: right;">'+total+'<input id="total_' + i + '" name="total_' + i + '" type="hidden" style="width:175px" class="form-control total" value="'+total+'">'
-				+ '<input id="rows_' + i + '" name="rows1[]" value="'+ i +'" type="hidden"></td></tr>'
-			); 
-            
+            i++;
+            $("#container1").append(
+                (isEven(i) ? '<tr class="alt">' : '<tr class="records">') +
+                '<td>' + $("#product_id").val() + '<input id="product_' + i + '" name="product_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + $('#product_id').val() + '"></td>' +
+                '<td>' + $('#product_name').val() + '<input id="item_' + i + '" name="item_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + $('#product_name').val() + '"></td>' +
+                '<td style="text-align: center;">' + price + '<input id="price_' + i + '" name="price_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + price + '"></td>' +
+                '<td style="text-align: center;">' + qty + '<input id="qty_' + i + '" name="qty_' + i + '" type="hidden" style="width:50px" class="form-control" value="' + qty + '"></td>' +
+                '<td style="text-align: right;">' + total + '<input id="total_' + i + '" name="total_' + i + '" type="hidden" style="width:175px" class="form-control total" value="' + total + '">' +
+                '<input id="rows_' + i + '" name="rows1[]" value="' + i + '" type="hidden"></td></tr>'
+            );
+
             let sum = 0;
             let items = document.getElementsByClassName("total");
             for (let i = 0; i < items.length; i++) {
@@ -244,7 +243,9 @@
             $("#stock").val('');
         });
 
-        function isEven(i) { return (i%2)==0; }
+        function isEven(i) {
+            return (i % 2) == 0;
+        }
     });
 </script>
 
