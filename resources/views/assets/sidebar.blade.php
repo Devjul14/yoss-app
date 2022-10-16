@@ -226,23 +226,15 @@
           <div class="sidebar-brand">
             <a href="/home">Yoss</a>
           </div>
-          <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
-          </div>
-          <ul class="sidebar-menu">
-            {{-- <li class="menu-header">Dashboard</li> --}}
-            <li class=menu-header><a class="nav-link" href="/home">Dashboard</a></li>
-            <li class="menu-header">Menu</li>
-            <li><a class="nav-link" href="/transaction"><i class="far fa-square"></i> <span>Transaction</span></a></li>
 
-            <li class="dropdown">
-              <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Master</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="/products">Products</a></li>
-                <li><a class="nav-link" href="/store">Store</a></li>
-                <li><a class="nav-link" href="/customer">Customer</a></li>
-              </ul>
-            </li>
+          <ul class="sidebar-menu">
+            <li class=menu-header><a class="nav-link" href="/home">Dashboard</a></li>
+            <li><a class="nav-link" href="/transaction"><i class="far fa-square"></i> <span>Transaction</span></a></li>
+            <li><a class="nav-link" href="/products"><i class="far fa-square"></i> <span>Products</span></a></li>
+            <li><a class="nav-link" href="/store"><i class="far fa-square"></i> <span>Store</span></a></li>
+            <li><a class="nav-link" href="/customer"><i class="far fa-square"></i> <span>Customer</span></a></li>
+
+
           </ul>
 
 
