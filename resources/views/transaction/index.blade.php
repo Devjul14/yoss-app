@@ -40,7 +40,12 @@
                                     <tr>
                                         <td>{{ $item->transaction_id }}</td>
                                         <td>{{ $item->customer }}</td>
-                                        <td>{{ $item->status }}</td>
+                                        <td>@if($item->status ==1)
+                                            <span class="badge badge-success">Paid</span>
+                                            @else
+                                            <span class="badge badge-warning">Un Paid</span>
+                                            @endif
+                                        </td>
                                         <td>{{ $item->date }}</td>
                                     </tr>
                                     @endforeach
