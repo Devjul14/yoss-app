@@ -20,7 +20,7 @@
                             <div class="col-lg-12">
                                 <div class="invoice-title">
                                     <h2>Yoss Elektronik</h2>
-                                    <div class="invoice-number">Order #12345</div>
+                                    <!-- <div class="invoice-number">Order #12345</div> -->
                                 </div>
                                 <hr>
                                 <div class="row">
@@ -42,7 +42,7 @@
                                             <option>{{$product->name}}</option>
                                             @endforeach
                                         </select>-->
-                                        <input type="text" class="form-control" name="product_name" id="product_name">
+                                        <input type="text" class="form-control" name="product_name" id="product_name" autofocus>
                                         <input type="hidden" class="form-control" name="product_id" id="product_id">
                                         <input type="hidden" class="form-control" name="price" id="price">
                                         <input type="hidden" class="form-control" name="stock" id="stock">
@@ -83,6 +83,7 @@
                                     <table class="table table-striped table-hover table-md">
                                         <tr>
                                             <th data-width="40">#</th>
+                                            <th>Type</th>
                                             <th>Item</th>
                                             <th class="text-center">Price</th>
                                             <th class="text-center">Quantity</th>
@@ -116,9 +117,6 @@
     </section>
 </div>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
     // CSRF Token
@@ -206,8 +204,10 @@
                     id: productId,
                 },
                 success: function(response) {
+                    type = response.type;
                     price = response.price;
                     stock = response.stock;
+                    $("#type").val(type);
                     $("#price").val(price);
                     $("#stock").val(stock);
                 }
@@ -221,7 +221,8 @@
             i++;
             $("#container1").append(
                 (isEven(i) ? '<tr class="alt">' : '<tr class="records">') +
-                '<td>' + $("#product_id").val() + '<input id="product_' + i + '" name="product_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + $('#product_id').val() + '"></td>' +
+                '<td>' + i + '<input id="product_' + i + '" name="product_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + $('#product_id').val() + '"></td>' +
+                '<td>' + type + '<input id="type_' + i + '" name="type_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + $('#type').val() + '"></td>' +
                 '<td>' + $('#product_name').val() + '<input id="item_' + i + '" name="item_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + $('#product_name').val() + '"></td>' +
                 '<td style="text-align: center;">' + price + '<input id="price_' + i + '" name="price_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + price + '"></td>' +
                 '<td style="text-align: center;">' + qty + '<input id="qty_' + i + '" name="qty_' + i + '" type="hidden" style="width:50px" class="form-control" value="' + qty + '"></td>' +

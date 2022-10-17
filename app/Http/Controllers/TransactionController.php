@@ -14,7 +14,13 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        return view('transaction.index');
+        $transactions = DB::table('transactions')
+        ->select('*', 'transactions.id as transaction_id', 'customers.name as customer')
+        ->leftjoin('customers', 'customers.id', '=', 'transactions.customer_id')
+        ->get();
+
+        // dd($transactions);
+        return view('transaction.index', compact('transactions'));
     }
 
     public function create()
@@ -34,11 +40,12 @@ class TransactionController extends Controller
                 'date' => 'required',
                 'customer_id' => 'required',
                 'store_id' => 'required',
-                'user_id' => 'required',
-                'status' => 'required',
+                'user_id' => 'required'
             ]);
-    
+            // dd($validateData);
             DB::beginTransaction();
+
+            $validateData['status'] = '1';
             $insertData = Transaction::create($validateData);
             $id =  $insertData->id;
             $total_data = $request->get('rows1');

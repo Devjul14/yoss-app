@@ -139,6 +139,7 @@ class ProductController extends Controller
         $response = array(
             "id" => $data->id,
             "name" => $data->name,
+            "type" => $data->type,
             "price" => $data->price,
             "stock" => $data->stock
         );
