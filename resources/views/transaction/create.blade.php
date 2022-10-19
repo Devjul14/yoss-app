@@ -36,12 +36,6 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <strong>Product:</strong><br>
-                                        <!--<select class="form-control select2" name="product">
-                                            <option> -Product- </option>
-                                            @foreach($products as $product)
-                                            <option>{{$product->name}}</option>
-                                            @endforeach
-                                        </select>-->
                                         <input type="text" class="form-control" name="product_name" id="product_name" autofocus>
                                         <input type="hidden" class="form-control" name="product_id" id="product_id">
                                         <input type="hidden" class="form-control" name="price" id="price">
@@ -62,14 +56,7 @@
                                         <input type="hidden" class="form-control" name="store_id" id="strore_id" value="1">
                                         <input type="hidden" class="form-control" name="user_id" id="user_id" value="1">
                                         <input type="hidden" class="form-control" name="date" id="date" value="{{ $transDate }}">
-                                        <input type="hidden" class="form-control" name="status" id="status" value="0">
-
-                                        <!--<select class="form-control select2" name="customer">
-                                            <option> -Customer- </option>
-                                            @foreach($customers as $customer)
-                                            <option>{{$customer->name}} :: {{ $customer->address }} </option>
-                                            @endforeach
-                                        </select>-->
+                                        <input type="hidden" class="form-control" name="status" id="status" value="1">
                                     </div>
                                 </div>
                             </div>
@@ -114,6 +101,7 @@
                 </div>
             </form>
         </div>
+
     </section>
 </div>
 
