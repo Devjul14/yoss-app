@@ -17,7 +17,7 @@ class TransactionController extends Controller
         $transactions = DB::table('transactions')
         ->select('*', 'transactions.id as transaction_id', 'customers.name as customer')
         ->leftjoin('customers', 'customers.id', '=', 'transactions.customer_id')
-        ->get();
+        ->paginate(5);
 
         // dd($transactions);
         return view('transaction.index', compact('transactions'));
@@ -63,13 +63,13 @@ class TransactionController extends Controller
             DB::commit();
 
             // dd($btnPrint);
-            return redirect('print-invoice');
+            return redirect('priview-invoice');
         } catch (\Exception $e) {
             DB::rollback();
         }
     }
 
-    public function printInvoice()
+    public function priviewInvoice()
     {
         dd('hai');
     }
