@@ -17,6 +17,7 @@ class TransactionController extends Controller
         $transactions = DB::table('transactions')
         ->select('*', 'transactions.id as transaction_id', 'customers.name as customer')
         ->leftjoin('customers', 'customers.id', '=', 'transactions.customer_id')
+            ->orderBy('transactions.id', 'desc')
         ->paginate(5);
 
         // dd($transactions);
@@ -71,6 +72,6 @@ class TransactionController extends Controller
 
     public function priviewInvoice()
     {
-        dd('hai');
+        return view('transaction.preview');
     }
 }
