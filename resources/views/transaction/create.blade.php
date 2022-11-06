@@ -11,8 +11,10 @@
             </div>
         </div>
 
+
+
         <div class="section-body">
-            <form action="{{ url('create-invoice') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('store-invoice') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="invoice">
                     <div class="invoice-print">

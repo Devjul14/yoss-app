@@ -4,12 +4,25 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Invoice</h1>
+            <h1>Print Invoice</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                 <div class="breadcrumb-item">Invoice</div>
             </div>
         </div>
+
+        @if (session()->has('success'))
+        <div class="alert alert-success alert-has-icon">
+            <div class="alert-icon"><i class="fa fa-check"></i></i></div>
+            <div class="alert-body">
+                <div class="alert-title"><strong>Success</strong></div>
+                {{ session('success') }}
+            </div>
+        </div><br>
+        <div class="text-md-center">
+            <button class="btn btn-lg btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>
+        </div>
+        @endif
 
         <div class="section-body">
             <div class="invoice">
@@ -17,41 +30,25 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="invoice-title">
-                                <h2>Invoice</h2>
-                                <div class="invoice-number">Order #12345</div>
+
+                                <div class="invoice-number">Order #{{ $transactions->transaction_id }}</div>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-md-6">
                                     <address>
-                                        <strong>Billed To:</strong><br>
-                                        Ujang Maman<br>
-                                        1234 Main<br>
-                                        Apt. 4B<br>
-                                        Bogor Barat, Indonesia
+                                        <h4 class="mb-0">{{ $transactions->store_name }}</h4><br>
+                                        {{ $transactions->stores_phone }}<br>
+                                        {{ $transactions->stores_address }}
                                     </address>
                                 </div>
                                 <div class="col-md-6 text-md-right">
                                     <address>
-                                        <strong>Shipped To:</strong><br>
-                                        Muhamad Nauval Azhar<br>
-                                        1234 Main<br>
-                                        Apt. 4B<br>
-                                        Bogor Barat, Indonesia
-                                    </address>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <address>
-                                        <strong>Payment Method:</strong><br>
-                                        Cash<br>
-                                    </address>
-                                </div>
-                                <div class="col-md-6 text-md-right">
-                                    <address>
-                                        <strong>Order Date:</strong><br>
-                                        September 19, 2018<br><br>
+                                        Cirebon, {{ date('j F, Y', strtotime($transactions->date)) }}<br><br>
+
+                                        {{ $transactions->customer }}<br>
+                                        {{ $transactions->customers_phone }}<br>
+                                        {{ $transactions->customers_address }}<br>
                                     </address>
                                 </div>
                             </div>

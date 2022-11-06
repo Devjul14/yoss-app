@@ -63,8 +63,8 @@ class TransactionController extends Controller
             }
             DB::commit();
 
-            // dd($btnPrint);
-            return redirect('priview-invoice');
+
+            return redirect('priviewInvoice')->with('success', 'Transaksi Berhasil!');
         } catch (\Exception $e) {
             DB::rollback();
         }
@@ -72,6 +72,25 @@ class TransactionController extends Controller
 
     public function priviewInvoice()
     {
-        return view('transaction.preview');
+        $transactions = DB::table('transactions')
+        ->select(
+            '*',
+            'transactions.id as transaction_id',
+            'customers.name as customer',
+            'customers.address as customers_address',
+            'customers.phone as customers_phone',
+            'stores.name as store_name',
+            'stores.address as stores_address',
+            'stores.phone as stores_phone',
+        )
+            ->leftjoin('customers', 'customers.id', '=', 'transactions.customer_id')
+            ->leftjoin('stores', 'stores.id', '=', 'transactions.store_id')
+            ->leftjoin('detail_transactions', 'detail_transactions.transaction_id', '=', 'transactions.id')
+            ->leftjoin('products', 'products.id', '=', 'detail_transactions.product_id')
+            ->orderBy('transactions.id', 'desc')
+            ->first();
+
+        // dd($transactions);
+        return view('transaction.preview', compact('transactions'));
     }
 }
