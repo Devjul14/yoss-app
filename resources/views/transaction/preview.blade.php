@@ -62,14 +62,23 @@
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover table-md">
                                     <tr>
-                                        <th data-width="40">#</th>
-                                        <th>Type</th>
-                                        <th>Item</th>
-                                        <th class="text-center">Price</th>
-                                        <th class="text-center">Quantity</th>
-                                        <th class="text-right">Totals</th>
+                                        <th data-width="40">Banyak</th>
+                                        <th>Nama Barang</th>
+                                        <th>Tipe</th>
+                                        <th class="text-center">Harga Satuan</th>
+                                        <th class="text-center">Jumlah</th>
                                     </tr>
-                                    <tbody id="container1"></tbody>
+                                    <tbody id="container1">
+                                        @foreach ( $detail_transactions as $item)
+                                        <tr>
+                                            <td>{{ $item->qty }} </td>
+                                            <td>{{ $item->name }} </td>
+                                            <td>{{ $item->type }} </td>
+                                            <td class="text-center">{{ $item->price }} </td>
+                                            <td class="text-center">{{ $item->qty * $item->price}} </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                             <div class="row mt-4">
@@ -83,10 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <hr>
-                <div class="text-md-right">
-                    <button class="btn btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>
-                </div>
+
             </div>
         </div>
 

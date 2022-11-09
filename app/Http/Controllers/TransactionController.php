@@ -90,7 +90,12 @@ class TransactionController extends Controller
             ->orderBy('transactions.id', 'desc')
             ->first();
 
-        // dd($transactions);
-        return view('transaction.preview', compact('transactions'));
+        $detail_transactions = DB::table('detail_transactions')
+        ->leftjoin('products', 'products.id', '=', 'detail_transactions.product_id')
+        ->where('detail_transactions.transaction_id', $transactions->transaction_id)
+        ->get();
+
+        // dd($detail_transactions);
+        return view('transaction.preview', compact('transactions', 'detail_transactions'));
     }
 }

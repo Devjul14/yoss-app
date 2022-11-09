@@ -56,7 +56,7 @@
                                         <input type="text" class="form-control" name="customer_name" id="customer_name">
                                         <input type="hidden" class="form-control" name="customer_id" id="customer_id">
                                         <input type="hidden" class="form-control" name="store_id" id="strore_id" value="1">
-                                        <input type="hidden" class="form-control" name="user_id" id="user_id" value="1">
+                                        <input type="hidden" class="form-control" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
                                         <input type="hidden" class="form-control" name="date" id="date" value="{{ $transDate }}">
                                         <input type="hidden" class="form-control" name="status" id="status" value="1">
                                     </div>
@@ -71,12 +71,11 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped table-hover table-md">
                                         <tr>
-                                            <th data-width="40">#</th>
-                                            <th>Type</th>
-                                            <th>Item</th>
-                                            <th class="text-center">Price</th>
-                                            <th class="text-center">Quantity</th>
-                                            <th class="text-right">Totals</th>
+                                            <th data-width="40">Banyak</th>
+                                            <th>Nama Barang</th>
+                                            <th>Tipe</th>
+                                            <th class="text-center">Harga Satuan</th>
+                                            <th class="text-center">Jumlah</th>
                                         </tr>
                                         <tbody id="container1"></tbody>
                                     </table>
@@ -211,11 +210,10 @@
             i++;
             $("#container1").append(
                 (isEven(i) ? '<tr class="alt">' : '<tr class="records">') +
-                '<td>' + i + '<input id="product_' + i + '" name="product_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + $('#product_id').val() + '"></td>' +
-                '<td>' + type + '<input id="type_' + i + '" name="type_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + $('#type').val() + '"></td>' +
-                '<td>' + $('#product_name').val() + '<input id="item_' + i + '" name="item_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + $('#product_name').val() + '"></td>' +
-                '<td style="text-align: center;">' + price + '<input id="price_' + i + '" name="price_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + price + '"></td>' +
                 '<td style="text-align: center;">' + qty + '<input id="qty_' + i + '" name="qty_' + i + '" type="hidden" style="width:50px" class="form-control" value="' + qty + '"></td>' +
+                '<td>' + $('#product_name').val() + '<input id="item_' + i + '" name="item_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + $('#product_name').val() + '"></td>' +
+                '<td>' + type + '<input id="type_' + i + '" name="type_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + $('#type').val() + '"></td>' +
+                '<td style="text-align: center;">' + price + '<input id="price_' + i + '" name="price_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + price + '"></td>' +
                 '<td style="text-align: right;">' + total + '<input id="total_' + i + '" name="total_' + i + '" type="hidden" style="width:175px" class="form-control total" value="' + total + '">' +
                 '<input id="rows_' + i + '" name="rows1[]" value="' + i + '" type="hidden"></td></tr>'
             );
