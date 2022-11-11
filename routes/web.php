@@ -36,7 +36,7 @@ Route::get('customer/{id}', 'App\Http\Controllers\CustomerController@destroy');
 // transaction
 Route::get('/transaction', [TransactionController::class, 'index']);
 Route::get('/create-invoice', [TransactionController::class, 'create']);
-Route::post('/store-invoice', [TransactionController::class, 'store']);
+Route::post('/create-invoice', [TransactionController::class, 'store']);
 Route::get('/priviewInvoice', [TransactionController::class, 'priviewInvoice']);
 
 //ajax

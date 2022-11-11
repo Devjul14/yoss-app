@@ -1,6 +1,5 @@
-
 @include('assets.header')
-        
+
 @include('assets.sidebar')
 <div class="main-content">
   <section class="section">
@@ -34,7 +33,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
               </div>
-              <div class="form-group col-md-6 col-lg-6">                
+              <div class="form-group col-md-6 col-lg-6">
                 <button type="submit" class="btn btn-primary text-right">Save</button>
               </div>
             </form>

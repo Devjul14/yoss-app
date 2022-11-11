@@ -36,21 +36,22 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
+        // dd('hai');
         try {
             $validateData = $request->validate([
                 'date' => 'required',
                 'customer_id' => 'required',
                 'store_id' => 'required',
                 'user_id' => 'required',
-                'status' => 'required',
+                'status' => 'required ',
             ]);
-            // dd($validateData);
             DB::beginTransaction();
-
-
+            
+            
             $insertData = Transaction::create($validateData);
             $id =  $insertData->id;
             $total_data = $request->get('rows1');
+            dd($total_data);
             for ($i = 1; $i <= count($total_data); $i++) {
                 //insert data detail
                 $insertDataDetails = new DetailTransaction;
