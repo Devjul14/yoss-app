@@ -15,8 +15,8 @@ class TransactionController extends Controller
     public function index()
     {
         $transactions = DB::table('transactions')
-        ->select('*', 'transactions.id as transaction_id', 'customers.name as customer')
-        ->leftjoin('customers', 'customers.id', '=', 'transactions.customer_id')
+            ->select('*', 'transactions.id as transaction_id', 'customers.name as customer')
+            ->leftjoin('customers', 'customers.id', '=', 'transactions.customer_id')
             ->orderBy('transactions.id', 'desc')
         ->paginate(5);
 
@@ -46,12 +46,12 @@ class TransactionController extends Controller
                 'status' => 'required ',
             ]);
             DB::beginTransaction();
-            
-            
+
+
             $insertData = Transaction::create($validateData);
             $id =  $insertData->id;
             $total_data = $request->get('rows1');
-            dd($total_data);
+            
             for ($i = 1; $i <= count($total_data); $i++) {
                 //insert data detail
                 $insertDataDetails = new DetailTransaction;
@@ -60,11 +60,12 @@ class TransactionController extends Controller
                 $insertDataDetails->qty = $_POST['qty_' . $i];
                 $insertDataDetails->save();
 
-                $updateStock = Product::Where('id', $_POST['product_' . $i])->decrement('stock', $_POST['qty_' . $i]);
+                $updateStock = Product::Where('id', $_POST['product_' . $i])
+                ->decrement('stock', $_POST['qty_' . $i]);
             }
             DB::commit();
 
-
+            // dd('berhasil');
             return redirect('priviewInvoice')->with('success', 'Transaksi Berhasil!');
         } catch (\Exception $e) {
             DB::rollback();
@@ -73,17 +74,18 @@ class TransactionController extends Controller
 
     public function priviewInvoice()
     {
+        // dd('berhasil');
         $transactions = DB::table('transactions')
-        ->select(
-            '*',
-            'transactions.id as transaction_id',
-            'customers.name as customer',
-            'customers.address as customers_address',
-            'customers.phone as customers_phone',
-            'stores.name as store_name',
-            'stores.address as stores_address',
-            'stores.phone as stores_phone',
-        )
+            ->select(
+                '*',
+                'transactions.id as transaction_id',
+                'customers.name as customer',
+                'customers.address as customers_address',
+                'customers.phone as customers_phone',
+                'stores.name as store_name',
+                'stores.address as stores_address',
+                'stores.phone as stores_phone',
+            )
             ->leftjoin('customers', 'customers.id', '=', 'transactions.customer_id')
             ->leftjoin('stores', 'stores.id', '=', 'transactions.store_id')
             ->leftjoin('detail_transactions', 'detail_transactions.transaction_id', '=', 'transactions.id')
@@ -94,7 +96,7 @@ class TransactionController extends Controller
         $detail_transactions = DB::table('detail_transactions')
         ->leftjoin('products', 'products.id', '=', 'detail_transactions.product_id')
         ->where('detail_transactions.transaction_id', $transactions->transaction_id)
-        ->get();
+            ->get();
 
         // dd($detail_transactions);
         return view('transaction.preview', compact('transactions', 'detail_transactions'));

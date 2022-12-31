@@ -211,6 +211,7 @@
             $("#container1").append(
                 (isEven(i) ? '<tr class="alt">' : '<tr class="records">') +
                 '<td style="text-align: center;">' + qty + '<input id="qty_' + i + '" name="qty_' + i + '" type="hidden" style="width:50px" class="form-control" value="' + qty + '"></td>' +
+                '<td>' + i + '<input id="product_' + i + '" name="product_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + $('#product_id').val() + '"></td>' +
                 '<td>' + $('#product_name').val() + '<input id="item_' + i + '" name="item_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + $('#product_name').val() + '"></td>' +
                 '<td>' + type + '<input id="type_' + i + '" name="type_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + $('#type').val() + '"></td>' +
                 '<td style="text-align: center;">' + price + '<input id="price_' + i + '" name="price_' + i + '" type="hidden" style="width:175px" class="form-control" value="' + price + '"></td>' +
