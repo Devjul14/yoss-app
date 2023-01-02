@@ -19,7 +19,7 @@
                 {{ session('success') }}
             </div>
         </div><br>
-        <div class="text-md-center">
+        <div class="text-md-center mb-3">
             <button class="btn btn-lg btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>
         </div>
         @endif
@@ -85,7 +85,7 @@
                                 <div class="col-lg-12 text-right">
                                     <div class="invoice-detail-item">
                                         <div class="invoice-detail-name">Total</div>
-                                        <div class="invoice-detail-value invoice-detail-value-lg">0</div>
+                                        <div class="invoice-detail-value invoice-detail-value-lg">{{ $totalPrice }}</div>
                                     </div>
                                 </div>
                             </div>

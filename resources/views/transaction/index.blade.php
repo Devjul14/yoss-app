@@ -34,6 +34,7 @@
                                         <th>Customer</th>
                                         <th>Status</th>
                                         <th>Due Date</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -48,6 +49,7 @@
                                             @endif
                                         </td>
                                         <td>{{ $item->date }}</td>
+                                        <td><a href=" {{ url('/invoice-detail/'. $item->transaction_id)}}" class="btn btn-info">Detail</a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

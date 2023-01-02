@@ -38,6 +38,8 @@ Route::get('/transaction', [TransactionController::class, 'index']);
 Route::get('/create-invoice', [TransactionController::class, 'create']);
 Route::post('/create-invoice', [TransactionController::class, 'store']);
 Route::get('/priviewInvoice', [TransactionController::class, 'priviewInvoice']);
+Route::get('/invoice-detail/{id}', [TransactionController::class, 'Invoicedetail']);
+Route::get('/test', [TransactionController::class, 'test']);
 
 //ajax
 Route::get('/get-product-details', [ProductController::class, 'getProductDetails'])->name('product.getProductDetails');
