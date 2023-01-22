@@ -18,12 +18,11 @@
                 <div class="alert-title"><strong>Success</strong></div>
                 {{ session('success') }}
             </div>
-        </div><br>
-        <div class="text-md-center mb-3">
-            <button class="btn btn-lg btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</button>
         </div>
         @endif
-
+        <div class="text-md-center mb-3">
+            <a href="{{ url('/generate-pdf')}}" class="btn btn-lg btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</a>
+        </div>
         <div class="section-body">
             <div class="invoice">
                 <div class="invoice-print">

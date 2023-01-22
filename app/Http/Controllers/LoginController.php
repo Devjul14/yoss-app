@@ -26,6 +26,12 @@ class LoginController extends Controller
             return redirect()->intended('/home');
         }
 
-        return back()->with('loginError', 'Login !');
+        return redirect('login')->with('loginError', 'Login !');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }

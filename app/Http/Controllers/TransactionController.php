@@ -107,9 +107,9 @@ class TransactionController extends Controller
         return view('transaction.preview', compact('transactions', 'detail_transactions', 'totalPrice'));
     }
 
-    public function detail($id)
+    public function Invoicedetail($id)
     {
-        dd($id);
+        // dd($id);
         $transactions = DB::table('transactions')
         ->select(
             '*',
@@ -142,8 +142,5 @@ class TransactionController extends Controller
         return view('transaction.detail', compact('transactions', 'detail_transactions', 'totalPrice'));
     }
 
-    public function test()
-    {
-        return 'test';
-    }
+    
 }
