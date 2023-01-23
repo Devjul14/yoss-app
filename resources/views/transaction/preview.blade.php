@@ -21,7 +21,7 @@
         </div>
         @endif
         <div class="text-md-center mb-3">
-            <a href="{{ url('/generate-pdf')}}" class="btn btn-lg btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</a>
+            <a href="{{ url('/generate-pdf/'.$transactions->transaction_id)}}" class="btn btn-lg btn-warning btn-icon icon-left"><i class="fas fa-print"></i> Print</a>
         </div>
         <div class="section-body">
             <div class="invoice">

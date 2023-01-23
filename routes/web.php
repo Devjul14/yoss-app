@@ -44,7 +44,7 @@ Route::get('/create-invoice', [TransactionController::class, 'create']);
 Route::post('/create-invoice', [TransactionController::class, 'store']);
 Route::get('/priviewInvoice', [TransactionController::class, 'priviewInvoice']);
     Route::get('/invoice-detail/{id}', [TransactionController::class, 'Invoicedetail']);
-    Route::get('/generate-pdf', [PDFController::class, 'generatePDF']);
+    Route::get('/generate-pdf/{id}', [PDFController::class, 'generatePDF']);
 
 //ajax
 Route::get('/get-product-details', [ProductController::class, 'getProductDetails'])->name('product.getProductDetails');

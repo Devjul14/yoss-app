@@ -125,17 +125,18 @@ class TransactionController extends Controller
             ->leftjoin('stores', 'stores.id', '=', 'transactions.store_id')
             ->leftjoin('detail_transactions', 'detail_transactions.transaction_id', '=', 'transactions.id')
             ->leftjoin('products', 'products.id', '=', 'detail_transactions.product_id')
+            ->where('transactions.id', $id)
             ->orderBy('transactions.id', 'desc')
             ->first();
 
         $detail_transactions = DB::table('detail_transactions')
         ->leftjoin('products', 'products.id', '=', 'detail_transactions.product_id')
-        ->where('detail_transactions.transaction_id', $transactions->transaction_id)
+            ->where('detail_transactions.transaction_id', $id)
             ->get();
 
         $totalPrice = DB::table('detail_transactions')
         ->leftjoin('products', 'products.id', '=', 'detail_transactions.product_id')
-        ->where('detail_transactions.transaction_id', $transactions->transaction_id)
+            ->where('detail_transactions.transaction_id', $id)
             ->sum('products.price');
 
         // dd($totalPrice);
