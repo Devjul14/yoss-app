@@ -10,7 +10,6 @@ class PdfController extends Controller
 {
     public function generatePDF($id)
     {
-        // dd($id);
         $transactions = DB::table('transactions')
         ->select(
             '*',
@@ -32,16 +31,22 @@ class PdfController extends Controller
 
         $detail_transactions = DB::table('detail_transactions')
         ->leftjoin('products', 'products.id', '=', 'detail_transactions.product_id')
-        ->where('detail_transactions.transaction_id', $id)
+            ->where('detail_transactions.transaction_id', $transactions->transaction_id)
             ->get();
 
         $totalPrice = DB::table('detail_transactions')
         ->leftjoin('products', 'products.id', '=', 'detail_transactions.product_id')
-        ->where('detail_transactions.transaction_id', $id)
+            ->where('detail_transactions.transaction_id', $transactions->transaction_id)
             ->sum('products.price');
+        // dd($detail_transactions);
+        $data = [
+            'title' => 'Invoice' . $id,
+            'transactions' => $transactions,
+            'detail_transactions' => $detail_transactions,
+            'totalPrice' => $totalPrice
+        ];
 
-        $pdf = PDF::loadView('myPDF', ['transactions' => $transactions, 'detail_transactions' => $detail_transactions, 'totalPrice' => $totalPrice]);
-
-        return $pdf->download('invoice' . $id . '.pdf');
+        $pdf = PDF::setPaper('A5', 'landscape')->loadView('myPDF', $data);
+        return $pdf->stream();
     }
 }

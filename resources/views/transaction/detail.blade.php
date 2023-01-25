@@ -63,7 +63,9 @@
 
             </div>
         </div>
-
+        <div class="footer text-center">
+            <a href="{{ URL::previous() }}" class="btn btn-primary">Back</a>
+        </div>
     </section>
 </div>
 

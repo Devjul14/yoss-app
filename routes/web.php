@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,9 +26,7 @@ use Illuminate\Http\Request;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
-Route::get('/home', function () {
-    return view('welcome');
-});
+Route::get('/home', [HomeController::class, 'dashboard']);
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 

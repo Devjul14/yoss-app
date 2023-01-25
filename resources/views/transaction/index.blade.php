@@ -49,7 +49,10 @@
                                             @endif
                                         </td>
                                         <td>{{ $item->date }}</td>
-                                        <td><a href=" {{ url('/invoice-detail/'. $item->transaction_id)}}" class="btn btn-info">Detail</a></td>
+                                        <td>
+                                            <a href=" {{ url('/invoice-detail/'. $item->transaction_id)}}" class="btn btn-info">Detail</a>
+                                            <a href=" {{ url('/generate-pdf/'.$item->transaction_id)}}" class="btn btn-warning">Print</a>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
