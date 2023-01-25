@@ -35,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/products', 'Productcontroller');
     Route::resource('/store', 'StoreController');
     Route::resource('/customer', 'CustomerController');
+    Route::resource('/users', 'UserController');
 Route::get('customer/{id}', 'App\Http\Controllers\CustomerController@destroy');
 
 // transaction

@@ -51,6 +51,7 @@
                 <li><a class="nav-link" href="/products">Products</a></li>
                 <li><a class="nav-link" href="/store">Store</a></li>
                 <li><a class="nav-link" href="/customer">Customer</a></li>
+                <li><a class="nav-link" href="/users">Users</a></li>
               </ul>
             </li>
 
