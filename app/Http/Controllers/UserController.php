@@ -43,7 +43,7 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
-
+        $validateData['password'] = bcrypt($validateData['password']);
         User::create($validateData);
 
         return redirect('users')->with('success', 'New user has been added !');
