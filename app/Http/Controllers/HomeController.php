@@ -66,9 +66,11 @@ class HomeController extends Controller
 
         foreach ($Salesofday as $sales) {
             $labels[] = $sales->hari;
-            $datasets[] = $sales->count;
+            $datasets[] = floor($sales->count / 1000);
         }
 
+
+        // dd($datasets);
         // mengirim variable ke chart
         $labels = json_encode($labels);
         $datasets = json_encode($datasets);

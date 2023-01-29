@@ -54,7 +54,7 @@
                             </button>
                           </div>
                           <div class="modal-body">
-                            <p>Are You Sure?</p>
+                            <p>Anda yakin menghapus <b>{{ $item->name }}</b> ? </p>
                           </div>
                           <div class="modal-footer">
                             <form action="{{url('customer', $item->id)}}" method="POST" class="pt-3">

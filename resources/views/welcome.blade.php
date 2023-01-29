@@ -77,7 +77,7 @@
       <div class="col-lg-8">
         <div class="card">
           <div class="card-header">
-            <h4>Contoh Penjualan perbulan</h4>
+            <h4>Contoh Penjualan Perminggu</h4>
           </div>
           <div class="card-body">
             <canvas id="mySales" height="158"></canvas>
@@ -140,7 +140,7 @@
               drawBorder: false,
             },
             ticks: {
-              stepSize: 150
+              stepSize: 1000
             }
           }],
           xAxes: [{
