@@ -31,6 +31,14 @@
             margin-bottom: auto;
         }
     </style>
+    <script>
+        $(document).ready(function() {
+            window.onload = function() {
+                window.print();
+            }
+
+        });
+    </script>
 </head>
 
 <body>

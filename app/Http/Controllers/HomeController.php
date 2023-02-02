@@ -56,7 +56,7 @@ class HomeController extends Controller
 
         $count_users = User::count();
 
-        $hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+        // $hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
         $Salesofday = DB::table('detail_transactions')
         ->select(DB::raw('DATE_FORMAT(detail_transactions.created_at, "%W") as hari, SUM(products.price) as count'))
         ->leftJoin('products', 'products.id', '=', 'detail_transactions.product_id')
@@ -64,16 +64,22 @@ class HomeController extends Controller
             ->groupBy(DB::raw('DATE_FORMAT(detail_transactions.created_at, "%W")'))
             ->get();
 
-        foreach ($Salesofday as $sales) {
-            $labels[] = $sales->hari;
-            $datasets[] = floor($sales->count / 1000);
+        // dd($Salesofday);
+
+        if ($Salesofday->count() > 0) {
+            foreach ($Salesofday as $sales) {
+                $labels[] = $sales->hari;
+                $datasets[] = floor($sales->count / 1000);
+            }
+        } else {
+            $labels = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'
+            ];
+            $datasets = ['0'];
         }
-
-
-        // dd($datasets);
         // mengirim variable ke chart
         $labels = json_encode($labels);
         $datasets = json_encode($datasets);
+
 
         // dd($labels, $datasets);
         return view('welcome', compact(
