@@ -66,7 +66,7 @@
               </div>
 
               <div class="card-body">
-                <form action="/login" method="post" class="needs-validation" novalidate="">
+                <form action="/login" method="POST" class="needs-validation" novalidate="">
                   @csrf
                   <div class="form-group">
                     <label for="email">Email</label>

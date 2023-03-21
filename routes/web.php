@@ -25,7 +25,9 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/login', [LoginController::class, 'authenticate'])->name('authlogin');
+// Route::post('/login', 'App\Http\Controllers\LoginController@authenticate');
+
 Route::get('/home', [HomeController::class, 'dashboard']);
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
