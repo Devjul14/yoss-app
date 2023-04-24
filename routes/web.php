@@ -34,7 +34,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
     // master
-    Route::resource('/products', 'Productcontroller');
+    Route::resource('/products', 'ProductController');
     Route::resource('/store', 'StoreController');
     Route::resource('/customer', 'CustomerController');
     Route::resource('/users', 'UserController');
